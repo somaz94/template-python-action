@@ -1,0 +1,35 @@
+name: My Action
+description: A brief description of what this action does
+author: YOUR_USERNAME
+
+branding:
+  icon: zap
+  color: blue
+
+inputs:
+  input_file:
+    description: 'Input file path'
+    required: false
+    default: ''
+  output_file:
+    description: 'Output file path'
+    required: false
+    default: 'output.txt'
+  dry_run:
+    description: 'Preview without writing to file'
+    required: false
+    default: 'false'
+
+outputs:
+  result:
+    description: 'The result of the action'
+  output_file:
+    description: 'Path to the generated output file'
+
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    INPUT_INPUT_FILE: ${{ inputs.input_file }}
+    INPUT_OUTPUT_FILE: ${{ inputs.output_file }}
+    INPUT_DRY_RUN: ${{ inputs.dry_run }}

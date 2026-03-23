@@ -1,0 +1,15 @@
+.git
+.github
+.gitignore
+.gitattributes
+*.md
+LICENSE
+Makefile
+tests/
+venv/
+.venv/
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+.coveragerc
