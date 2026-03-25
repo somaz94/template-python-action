@@ -30,34 +30,27 @@ jobs:
           fi
           echo "tag=${PREVIOUS_TAG}" >> "$GITHUB_OUTPUT"
 
-      - name: Generate release notes
-        id: notes
+      - name: Generate changelog with git-cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+        env:
+          OUTPUT: RELEASE.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Append full changelog link
+        if: steps.prev_tag.outputs.tag != ''
         run: |
-          CURRENT_TAG="${{ github.ref_name }}"
-          PREVIOUS_TAG="${{ steps.prev_tag.outputs.tag }}"
-          if [ -n "$PREVIOUS_TAG" ]; then
-            NOTES=$(git log "${PREVIOUS_TAG}..${CURRENT_TAG}" --pretty=format:"- %s" --reverse)
-            FULL_CHANGELOG="**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREVIOUS_TAG}...${CURRENT_TAG}"
-          else
-            NOTES=$(git log --pretty=format:"- %s" --reverse)
-            FULL_CHANGELOG=""
-          fi
-          {
-            echo "notes<<EOF"
-            echo "## What's Changed"
-            echo ""
-            echo "$NOTES"
-            echo ""
-            echo "$FULL_CHANGELOG"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
+          echo "" >> RELEASE.md
+          echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ steps.prev_tag.outputs.tag }}...${{ github.ref_name }}" >> RELEASE.md
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
-          body: ${{ steps.notes.outputs.notes }}
+          body_path: RELEASE.md
           draft: false
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
