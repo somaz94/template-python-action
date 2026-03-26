@@ -11,11 +11,6 @@ make coverage    # Generate HTML coverage report
 make clean       # Remove artifacts
 ```
 
-- Do not include `Co-Authored-By` lines in commit messages.
-- Use Conventional Commits (`feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `ci:`, `chore:`)
-- Do not push to remote. Only commit. The user will push manually.
-- Do not modify git config.
-
 ## Project Structure
 
 ```
@@ -44,6 +39,3 @@ Dockerfile                   # Multi-stage build (python:3.14-slim)
 ## CI
 
 - `ci.yml` — Unit tests (pytest), Docker build & dry-run, action integration test
-
-- Communicate with the user in Korean.
-- All documentation and code comments must be written in English.
