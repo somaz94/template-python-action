@@ -54,7 +54,6 @@ jobs:
       - name: Setup Docker BuildX
         uses: docker/setup-buildx-action@v4
         with:
-          install: true
           driver-opts: network=host
 
       - name: Build the Container
