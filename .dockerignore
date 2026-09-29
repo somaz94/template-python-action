@@ -5,6 +5,7 @@
 *.md
 LICENSE
 Makefile
+requirements-dev.txt
 tests/
 venv/
 .venv/

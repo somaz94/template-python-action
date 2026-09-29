@@ -1,6 +1,4 @@
-import os
-
-from output import set_output, log_warning, log_error
+from output import log_error, log_warning, set_output
 
 
 class TestSetOutput:

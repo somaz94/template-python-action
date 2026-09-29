@@ -26,13 +26,15 @@ jobs:
           python-version: '3.13'
 
       - name: Install dependencies
-        run: pip install pytest pytest-cov
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint
+        run: |
+          ruff check app tests
+          ruff format --check app tests
 
       - name: Run tests with coverage
         run: pytest tests/ -v --cov=app --cov-report=term-missing --cov-fail-under=90
-
-      - name: Display coverage summary
-        run: pytest tests/ --cov=app --cov-report=term | tail -n 5
 
   build-docker:
     name: Build and Test Docker

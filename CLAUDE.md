@@ -8,6 +8,9 @@ A Python-based GitHub Action (Docker container action).
 make venv        # Create virtualenv
 make test        # Unit tests with coverage
 make coverage    # Generate HTML coverage report
+make lint        # Lint with ruff (make lint-fix to auto-fix)
+make format      # Format with ruff (make format-check to verify)
+make ci          # Lint + format check + unit tests
 make clean       # Remove artifacts
 ```
 
@@ -26,6 +29,7 @@ tests/
   test_output.py
 action.yml                   # Action metadata (inputs/outputs)
 Dockerfile                   # Multi-stage build (python:3.14-slim)
+requirements-dev.txt         # pytest, pytest-cov, ruff (pinned)
 ```
 
 ## Key Concepts
@@ -38,4 +42,4 @@ Dockerfile                   # Multi-stage build (python:3.14-slim)
 
 ## CI
 
-- `ci.yml` — Unit tests (pytest), Docker build & dry-run, action integration test
+- `ci.yml` — Lint (ruff) and unit tests (pytest), Docker build & dry-run, action integration test

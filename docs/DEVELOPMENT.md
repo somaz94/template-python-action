@@ -26,6 +26,9 @@ source venv/bin/activate
 ```bash
 make test            # Run unit tests with coverage
 make coverage        # Generate HTML coverage report → htmlcov/index.html
+make lint            # Lint with ruff (make lint-fix to auto-fix)
+make format          # Format with ruff (make format-check to verify)
+make ci              # Lint + format check + unit tests
 ```
 
 <br/>

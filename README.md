@@ -145,6 +145,9 @@ make help            # Show all targets
 make venv            # Create virtualenv and install dev dependencies
 make test            # Run unit tests with coverage
 make coverage        # Generate HTML coverage report
+make lint            # Lint with ruff (make lint-fix to auto-fix)
+make format          # Format with ruff (make format-check to verify)
+make ci              # Lint + format check + unit tests
 make branch name=x   # Create feature branch feat/x
 make pr title="..."  # Test → push → create PR
 make clean           # Remove venv, cache, and artifacts

@@ -1,5 +1,4 @@
-from action import run, process_file
-from config import AppConfig
+from action import process_file, run
 
 
 class TestRun:

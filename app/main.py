@@ -1,9 +1,8 @@
-import os
 import sys
 
-from config import AppConfig
 from action import run
-from output import set_output, log_info, log_error
+from config import AppConfig
+from output import log_error, log_info, set_output
 
 
 class ActionRunner:
@@ -51,7 +50,7 @@ def main():
     except ValueError as e:
         log_error(str(e))
         sys.exit(1)
-    except Exception as e:
+    except Exception as e:  # noqa: BLE001
         log_error(f"Unexpected error: {e}")
         sys.exit(1)
 
