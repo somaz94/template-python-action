@@ -1,4 +1,4 @@
-from output import log_error, log_warning, set_output
+from output import log_error, log_info, log_warning, set_output
 
 
 class TestSetOutput:
@@ -29,6 +29,10 @@ class TestSetOutput:
 
 
 class TestLogging:
+    def test_log_info(self, capsys):
+        log_info("test info")
+        assert capsys.readouterr().out == "test info\n"
+
     def test_log_warning(self, capsys):
         log_warning("test warning")
         assert capsys.readouterr().out == "::warning::test warning\n"

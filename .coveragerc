@@ -5,3 +5,4 @@ source = app
 exclude_lines =
     if TYPE_CHECKING:
     pass
+    if __name__ == .__main__.:
